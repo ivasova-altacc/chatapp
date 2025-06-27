@@ -1,0 +1,34 @@
+from tcpcom import TCPClient
+from gpanel import *
+
+
+
+server_ip = "116.203.99.55"
+server_port = 43223
+
+def handle_click(x, y):
+    print(x, y)
+    move(x,y)
+    fillCircle(0.1)
+    combined = ip + ":" + str(x) + "|" + str(y)
+    print(combined)
+
+def handle_event(event, message):
+    # Die Nachricht message vom Typ
+    # event verarbeiten
+    print(event, message)
+
+client = TCPClient(server_ip, server_port, 
+         stateChanged=handle_event)
+
+client.connect()
+
+
+ip = input('Enter recipient IP')
+
+    
+makeGPanel(0, 3, 3, 0, mousePressed=handle_click)
+
+
+
+
