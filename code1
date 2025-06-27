@@ -1,0 +1,22 @@
+from tcpcom import TCPClient
+
+server_ip = "116.203.99.55"
+server_port = 43223
+
+def handle_event(event, message):
+    # Die Nachricht message vom Typ
+    # event verarbeiten
+    print(event, message)
+
+client = TCPClient(server_ip, server_port, 
+         stateChanged=handle_event)
+
+client.connect()
+
+
+repeat:
+    ip = input('Enter recipient IP')
+    message = input('Enter your message')
+    combined = ip + ":" + message
+    print(combined)
+    client.sendMessage(combined)
